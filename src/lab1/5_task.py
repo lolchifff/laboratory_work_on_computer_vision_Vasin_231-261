@@ -62,14 +62,35 @@ b_razn_channel = b_razn[:, :, 2]
 
 result_subtracted = cv2.merge([r_razn_channel, g_razn_channel, b_razn_channel])
 
-plt.subplot(1, 2, 1)
+
+
+r_mult = cv2.multiply(r_channel_img1, r_channel_img2)
+g_mult = cv2.multiply(g_channel_img1, g_channel_img2)
+b_mult = cv2.multiply(b_channel_img1, b_channel_img2)
+
+
+r_mult_channel = r_mult[:, :, 0]
+g_mult_channel = g_mult[:, :, 1]  
+b_mult_channel = b_mult[:, :, 2]
+
+result_multiplied = cv2.merge([r_mult_channel, g_mult_channel, b_mult_channel])
+
+
+
+
+plt.subplot(3, 2, 1)
 plt.imshow(sum_image)
 plt.title('Поканальное сложение')
 plt.axis('off') 
 
-plt.subplot(1, 2, 2)
+plt.subplot(3, 2, 2)
 plt.imshow(result_subtracted)
 plt.title('Поканальное вычитание')
+plt.axis('off')
+
+plt.subplot(3, 2, 3)
+plt.imshow(result_multiplied)
+plt.title('Поканальное умножение')
 plt.axis('off')
 
 plt.tight_layout()
